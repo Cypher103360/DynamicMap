@@ -56,7 +56,7 @@ dependencies {
 ```
 
 #### Step 2: Configure Repository
-Since this library is hosted in a private repository, you need to configure your project to access it. Add the repository URL, GitHub username, and token to your project's `settings.gradle`:
+Since this library is hosted in a public repository, you need to configure your project to access it. Add the repository URL, GitHub username, and token to your project's `settings.gradle`:
 
 **Using `settings.gradle`:**
 
