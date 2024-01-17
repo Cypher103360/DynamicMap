@@ -1,8 +1,16 @@
+import java.util.Properties
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
+val getVersionName = "1.0.0"
+val getArtifactId = "dynamic-map"
+val githubProperties = Properties()
+githubProperties.load(
+    rootProject.file("github.properties").inputStream()
+) // Load GitHub credentials from github.properties file
 
 android {
     namespace = "com.lattice.dynamic_map"
@@ -64,26 +72,43 @@ dependencies {
     implementation("com.google.android.gms:play-services-gcm:17.0.0")
 
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
 
     // Permission
     implementation("com.google.accompanist:accompanist-permissions:0.19.0")
 
     // viewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
     implementation("com.google.maps.android:maps-utils-ktx:5.0.0")
 }
 
 afterEvaluate {
-    configure<PublishingExtension> {
+    val gitUsername = githubProperties.getProperty("gpr.usr")
+    val gitPassword = githubProperties.getProperty("gpr.key")
+
+    //println("GitHub Username: $gitUsername")
+    //println("GitHub Token: $gitPassword")
+
+    publishing {
         publications {
-            create<MavenPublication>("release"){
+            create<MavenPublication>("release") {
                 from(components["release"])
-                //LatticeInnovations
-                groupId = "com.github.Cypher103360"
-                artifactId = "dynamic-map"
-                version = "1.0.0"
+                groupId = "com.gaurav.kumar"
+                artifactId = getArtifactId
+                version = getVersionName
+                //artifact("$buildDir/outputs/aar/${getArtifactId}-release.aar")
+            }
+        }
+        repositories {
+            maven {
+                name = "DynamicMapRepo"
+                url = uri("https://maven.pkg.github.com/Cypher103360/DynamicMap")
+
+                credentials {
+                    username = gitUsername
+                    password = gitPassword
+                }
             }
         }
     }

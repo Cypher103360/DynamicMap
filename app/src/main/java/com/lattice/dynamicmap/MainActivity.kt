@@ -19,7 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.maps.model.LatLng
-import com.lattice.dynamic_map.MapScreen
+import com.lattice.dynamic_maps.views.MapScreen
 import com.lattice.dynamicmap.ui.theme.DynamicMapTheme
 
 class MainActivity : ComponentActivity() {
@@ -53,11 +53,15 @@ class MainActivity : ComponentActivity() {
             }
             composable("mapScreen") {
                 //val origin = LatLng(28.52785085785891, 77.28170674108607)
-                val destination = LatLng(28.52785085785891, 77.28170674108607)
+                val destination = LatLng(28.5257761482471, 77.27583783960247)
                 val originIcon = R.drawable.origin_icon
                 val desIcon = R.drawable.destination
                 val key = BuildConfig.MAPS_API_KEY
-                MapScreen(originIcon, desIcon, destination, key)
+                MapScreen(
+                    originIcon = originIcon,
+                    destinationIcon = desIcon,
+                    destination = destination,
+                    mapApiKey = key)
             }
         }
     }

@@ -3,10 +3,12 @@ package com.lattice.dynamic_map
 import android.Manifest
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -173,4 +175,14 @@ fun GoogleMarkers(origin: LatLng, destination: LatLng, viewModel: MainViewModel,
             140
         )
     )
+}
+
+@Composable
+fun ShowText(name: String, age: String){
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .padding(20.dp)) {
+        Text(text = name)
+        Text(text = age)
+    }
 }

@@ -26,7 +26,7 @@ android {
 
     buildTypes {
         release {
-            buildConfigField("String", "MAPS_API_KEY", "\"${localProperties["MAPS_API_KEY"]}\"")
+            buildConfigField("String", "MAPS_API_KEY", "\"${localProperties.getProperty("MAPS_API_KEY")}\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -34,7 +34,7 @@ android {
             )
         }
         debug {
-            buildConfigField("String", "MAPS_API_KEY", "\"${localProperties["MAPS_API_KEY"]}\"")
+            buildConfigField("String", "MAPS_API_KEY", "\"${localProperties.getProperty("MAPS_API_KEY")}\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -90,17 +90,19 @@ dependencies {
 
 
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
 
     // Permission
     implementation("com.google.accompanist:accompanist-permissions:0.19.0")
 
     // viewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
     implementation("com.google.maps.android:maps-utils-ktx:5.0.0")
 
 
     // Dynamic Map
-    implementation(project(":dynamic-map"))
+    //implementation(project(":dynamic-map"))
+    //implementation("com.gaurav.kumar:dynamic-map:1.0.2")
+    implementation("com.lattice:dynamic-maps:1.0.0")
 }
