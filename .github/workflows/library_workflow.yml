@@ -20,7 +20,7 @@ jobs:
           java-version: '11'
 
       - name: Set up Gradle
-        uses: eskatos/gradle-github-actions-plugin@v2
+        uses: eskatos/gradle-github-actions-plugin@latest-release
 
       - name: Build and Publish
         run: |
