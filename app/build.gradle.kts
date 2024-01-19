@@ -1,7 +1,7 @@
-import java.util.Properties
-val localProperties = Properties().apply {
-    load(rootProject.file("local.properties").inputStream())
-}
+//import java.util.Properties
+//val localProperties = Properties().apply {
+//    load(rootProject.file("local.properties").inputStream())
+//}
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
