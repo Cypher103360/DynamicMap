@@ -1,7 +1,13 @@
-//import java.util.Properties
-//val localProperties = Properties().apply {
-//    load(rootProject.file("local.properties").inputStream())
-//}
+import java.util.Properties
+
+var mapsApiKey: String? = System.getenv("MAPS_API_KEY")
+if(mapsApiKey == null) {
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
+}
+    mapsApiKey = localProperties.getProperty("MAPS_API_KEY")
+}
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -26,7 +32,7 @@ android {
 
     buildTypes {
         release {
-            buildConfigField("String", "MAPS_API_KEY", "\"${System.getenv("MAPS_API_KEY") ?: ""}\"")
+            buildConfigField("String", "MAPS_API_KEY", "\"${mapsApiKey}\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -34,7 +40,7 @@ android {
             )
         }
         debug {
-            buildConfigField("String", "MAPS_API_KEY", "\"${System.getenv("MAPS_API_KEY") ?: ""}\"")
+            buildConfigField("String", "MAPS_API_KEY", "\"${mapsApiKey}\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

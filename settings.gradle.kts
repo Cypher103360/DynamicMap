@@ -1,9 +1,17 @@
-//import java.io.FileInputStream
-//import java.util.Properties
-//
-//val propertiesFile = File(rootProject.projectDir, "github.properties")
-//val githubProperties = Properties()
-//githubProperties.load(FileInputStream(propertiesFile))
+import java.io.FileInputStream
+import java.util.Properties
+
+var gitUsername: String? = System.getenv("GPR_USER")
+var gitPassword: String? = System.getenv("GPR_TOKEN")
+
+if (gitUsername == null && gitPassword == null) {
+    val propertiesFile = File(rootProject.projectDir, "github.properties")
+    val githubProperties = Properties()
+    githubProperties.load(FileInputStream(propertiesFile))
+
+    gitUsername = githubProperties.getProperty("gpr.usr")
+    gitPassword = githubProperties.getProperty("gpr.key")
+}
 
 pluginManagement {
     repositories {
@@ -27,8 +35,8 @@ dependencyResolutionManagement {
 
 
                 credentials {
-                    username = System.getenv("GPR_USER")
-                    password = System.getenv("GPR_TOKEN")
+                    username = gitUsername
+                    password = gitPassword
                 }
             }
     }
