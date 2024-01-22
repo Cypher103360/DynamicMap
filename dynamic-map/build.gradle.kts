@@ -5,7 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
-val getVersionName = "1.0.0"
+val getVersionName = "1.0.2"
 val getArtifactId = "dynamic-map"
 
 
@@ -91,8 +91,6 @@ afterEvaluate {
         gitUsername = githubProperties.getProperty("gpr.usr")
         gitPassword = githubProperties.getProperty("gpr.key")
     }
-    println("GitHub Username: $gitUsername")
-    println("GitHub Token: $gitPassword")
 
     publishing {
         publications {
